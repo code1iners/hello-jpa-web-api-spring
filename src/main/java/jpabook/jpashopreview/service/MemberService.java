@@ -20,7 +20,7 @@ public class MemberService {
      * <p>Create new member by member entity.</p>
      */
     @Transactional
-    public Long join(Member member) {
+    public Long joinMember(Member member) {
         validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
