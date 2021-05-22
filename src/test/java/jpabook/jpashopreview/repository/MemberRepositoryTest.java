@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class MemberRepositoryTest {
 
     @Autowired MemberRepository memberRepository;
@@ -21,7 +22,6 @@ public class MemberRepositoryTest {
      * <h3>Repository save and find test method.</h3>
      */
     @Test
-    @Transactional
     @Rollback(false)    // note. Not delete data in database.
     public void save() throws Exception {
         // given

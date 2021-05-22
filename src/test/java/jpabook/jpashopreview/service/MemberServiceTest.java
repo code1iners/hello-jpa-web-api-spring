@@ -23,7 +23,7 @@ public class MemberServiceTest {
     public void join() throws Exception {
         // given
         Member member = new Member();
-        member.setName("member1");
+        member.setName("member");
 
         // when
         Long joinedMemberId = memberService.joinMember(member);
