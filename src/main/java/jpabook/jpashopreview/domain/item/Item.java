@@ -1,6 +1,7 @@
 package jpabook.jpashopreview.domain.item;
 
 import jpabook.jpashopreview.domain.Category;
+import jpabook.jpashopreview.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,4 +27,23 @@ public abstract class Item {
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
+
+    // note. DDD (Domain Driven Design)
+    /**
+     * <p>Increase item stock.</p>
+     */
+    public void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    /**
+     * <p>Decrease item stock.</p>
+     */
+    public void removeStock(int quantity) {
+        int restStock = this.stockQuantity - quantity;
+        if (restStock < 0) {
+            throw new NotEnoughStockException("need more stock");
+        }
+        this.stockQuantity = restStock;
+    }
 }
