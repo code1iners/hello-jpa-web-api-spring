@@ -26,8 +26,8 @@ public class MemberRepository {
      * <h3>Member find</h3>
      * <p>Find member by member id.</p>
      */
-    public Member findById(Long id) {
-        return em.find(Member.class, id);
+    public Member findById(Long memberId) {
+        return em.find(Member.class, memberId);
     }
 
     /**
