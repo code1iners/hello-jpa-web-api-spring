@@ -1,16 +1,16 @@
 package jpabook.jpashopreview.controller.order;
 
 import jpabook.jpashopreview.domain.Member;
+import jpabook.jpashopreview.domain.Order;
 import jpabook.jpashopreview.domain.item.Item;
+import jpabook.jpashopreview.repository.OrderSearch;
 import jpabook.jpashopreview.service.ItemService;
 import jpabook.jpashopreview.service.MemberService;
 import jpabook.jpashopreview.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,9 +43,16 @@ public class OrderController {
         return "redirect:/orders";
     }
 
-//    @GetMapping("/orders")
-//    public String list(OrderForm form) {
-//        orderService.sear
-//        return "";
-//    }
+    @GetMapping("/orders")
+    public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
+        List<Order> orders = orderService.findOrders(orderSearch);
+        model.addAttribute("orders", orders);
+        return "orders/orderList";
+    }
+
+    @PostMapping("/orders/{orderId}/cancel")
+    public String orderCancel(@PathVariable Long orderId) {
+        orderService.cancelOrder(orderId);
+        return "redirect:/orders";
+    }
 }
