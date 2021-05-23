@@ -1,5 +1,7 @@
 package jpabook.jpashopreview.service;
 
+import jpabook.jpashopreview.domain.UpdateItemDTO;
+import jpabook.jpashopreview.domain.item.Book;
 import jpabook.jpashopreview.domain.item.Item;
 import jpabook.jpashopreview.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,18 @@ public class ItemService {
     public Long saveItem(Item item) {
         itemRepository.save(item);
         return item.getId();
+    }
+
+    /**
+     * <h3>Update item.</h3>
+     * <p>Update item with dirty checking.</p>
+     */
+    @Transactional
+    public void updateItem(Long itemId, UpdateItemDTO updateItemDTO) {
+        Item foundItem = itemRepository.findById(itemId);
+        foundItem.setName(updateItemDTO.getName());
+        foundItem.setPrice(updateItemDTO.getPrice());
+        foundItem.setStockQuantity(updateItemDTO.getStockQuantity());
     }
 
     /**
