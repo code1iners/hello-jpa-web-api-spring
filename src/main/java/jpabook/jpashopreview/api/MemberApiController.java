@@ -90,15 +90,7 @@ public class MemberApiController {
         return new Result(members.size(), members);
     }
 
-    @Data
-    @AllArgsConstructor
-    static class Result<T> {
-        private int count;
-        private T data;
-    }
-
     // note. DTO...
-
     /**
      * <h3>Create member request</h3>
      * <p>With Data Transfer Object related to Member.</p>
@@ -148,5 +140,16 @@ public class MemberApiController {
         private Long id;
         private String name;
         private Address address;
+    }
+
+    /**
+     * <h3>Result DTO</h3>
+     * <p>Using by getting members as list.</p>
+     */
+    @Data
+    @AllArgsConstructor
+    static class Result<T> {
+        private int count;
+        private T data;
     }
 }
