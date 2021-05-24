@@ -142,4 +142,21 @@ public class OrderRepository {
                         " join fetch o.delivery d", Order.class)
                 .getResultList();
     }
+
+    /**
+     * <h3>Find all orders with Item</h3>
+     * <p>Used by fetch join.</p>
+     * <p>So, If you want use paging, do not use this way.</p>
+     */
+    public List<Order> findAllWithItem() {
+        return em.createQuery(
+                "select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" +
+                        " join fetch oi.item i"
+                , Order.class
+        )
+                .getResultList();
+    }
 }

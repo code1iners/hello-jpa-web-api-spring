@@ -55,6 +55,20 @@ public class OrderApiController {
         return new Result(result.size(), result);
     }
 
+    /**
+     * <h3>Find orders</h3>
+     * <p>Find orders with fetch join.</p>
+     * <p>But could not use paging (Important).</p>
+     */
+    @GetMapping("/api/v3/orders")
+    public Result ordersV3() {
+        List<Order> foundOrders = orderRepository.findAllWithItem();
+        List<OrderDto> result = foundOrders.stream()
+                .map(OrderDto::new)
+                .collect(Collectors.toList());
+        return new Result(result.size(), result);
+    }
+
     // note. DTO...
     @Getter
     static class OrderDto {
