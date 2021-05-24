@@ -28,6 +28,10 @@ public class OrderSimpleApiController {
     @GetMapping("/api/v1/simple-orders")
     public List<Order> ordersV1() {
         List<Order> foundOrders = orderRepository.search(new OrderSearch());
+        for (Order foundOrder : foundOrders) {
+            foundOrder.getMember().getName(); // note. Force init lazy.
+            foundOrder.getDelivery().getAddress(); // note. Force init lazy.
+        }
         return foundOrders;
     }
 }
