@@ -5,6 +5,8 @@ import jpabook.jpashopreview.domain.status.OrderStatus;
 import jpabook.jpashopreview.domain.value.Address;
 import jpabook.jpashopreview.repository.OrderRepository;
 import jpabook.jpashopreview.repository.OrderSearch;
+import jpabook.jpashopreview.repository.order.query.OrderQueryDto;
+import jpabook.jpashopreview.repository.order.query.OrderQueryRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,7 @@ import java.util.stream.Collectors;
 public class OrderSimpleApiController {
 
     private final OrderRepository orderRepository;
+    private final OrderQueryRepository orderQueryRepository;
 
     /**
      * <h3>Get orders as list (Not recommended).</h3>
@@ -45,10 +48,10 @@ public class OrderSimpleApiController {
      * <p>Expose order DTO instead of Entity.</p>
      */
     @GetMapping("/api/v2/simple-orders")
-    public List<SimpleOrderDTO> ordersV2() {
+    public List<SimpleOrderDto> ordersV2() {
         List<Order> foundOrders = orderRepository.search(new OrderSearch());
-        List<SimpleOrderDTO> result = foundOrders.stream()
-                .map(SimpleOrderDTO::new)
+        List<SimpleOrderDto> result = foundOrders.stream()
+                .map(SimpleOrderDto::new)
                 .collect(Collectors.toList());
         return result;
     }
@@ -58,27 +61,39 @@ public class OrderSimpleApiController {
      * <p>With fetch join.</p>
      */
     @GetMapping("/api/v3/simple-orders")
-    public List<SimpleOrderDTO> ordersV3() {
+    public List<SimpleOrderDto> ordersV3() {
         List<Order> foundOrders = orderRepository.findAllWithMemberDelivery();
-        List<SimpleOrderDTO> result = foundOrders.stream()
-                .map(SimpleOrderDTO::new)
+        List<SimpleOrderDto> result = foundOrders.stream()
+                .map(SimpleOrderDto::new)
                 .collect(Collectors.toList());
         return result;
+    }
+
+    /**
+     * <h3>Get orders as list</h3>
+     * <p>Look up with DTO directly.</p>
+     * <p>But getting all columns of tables.</p>
+     * <p>Could not select column in tables.</p>
+     */
+    @GetMapping("/api/v4/simple-orders")
+    public List<OrderQueryDto> ordersV4() {
+        return orderQueryRepository.findOrdersWithDto();
     }
 
     // note. DTO...
     /**
      * <h3>Simple order DTO</h3>
+     * <p>Could select colum nin tables.</p>
      */
     @Data
-    static class SimpleOrderDTO {
+    static class SimpleOrderDto {
         private Long orderId;
         private String name;
         private LocalDateTime orderDate;
         private OrderStatus orderStatus;
         private Address address;
 
-        public SimpleOrderDTO(Order order) {
+        public SimpleOrderDto(Order order) {
             orderId = order.getId();
             name = order.getMember().getName();
             orderDate = order.getOrderDate();

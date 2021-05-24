@@ -1,5 +1,6 @@
 package jpabook.jpashopreview.repository;
 
+import jpabook.jpashopreview.api.OrderSimpleApiController;
 import jpabook.jpashopreview.domain.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -130,6 +131,11 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    /**
+     * <h3>Find all orders with Member & Delivery</h3>
+     * <p>Used by fetch join.</p>
+     * <p>Has reusability</p>
+     */
     public List<Order> findAllWithMemberDelivery() {
         return em.createQuery(
                 "select o from Order o" +
