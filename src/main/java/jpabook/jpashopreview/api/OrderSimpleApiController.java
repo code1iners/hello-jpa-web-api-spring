@@ -40,9 +40,26 @@ public class OrderSimpleApiController {
         return foundOrders;
     }
 
+    /**
+     * <h3>Get orders as list</h3>
+     * <p>Expose order DTO instead of Entity.</p>
+     */
     @GetMapping("/api/v2/simple-orders")
     public List<SimpleOrderDTO> ordersV2() {
         List<Order> foundOrders = orderRepository.search(new OrderSearch());
+        List<SimpleOrderDTO> result = foundOrders.stream()
+                .map(SimpleOrderDTO::new)
+                .collect(Collectors.toList());
+        return result;
+    }
+
+    /**
+     * <h3>Get orders as list</h3>
+     * <p>With fetch join.</p>
+     */
+    @GetMapping("/api/v3/simple-orders")
+    public List<SimpleOrderDTO> ordersV3() {
+        List<Order> foundOrders = orderRepository.findAllWithMemberDelivery();
         List<SimpleOrderDTO> result = foundOrders.stream()
                 .map(SimpleOrderDTO::new)
                 .collect(Collectors.toList());
