@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: none  # Delete all data when start application.
+      ddl-auto: create  # Delete all data when start application.
     properties:
       hibernate:
 #        show_sql: true # Duplicate feature with below logging.
