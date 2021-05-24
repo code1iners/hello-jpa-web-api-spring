@@ -2,12 +2,10 @@ package jpabook.jpashopreview.api;
 
 import jpabook.jpashopreview.domain.Member;
 import jpabook.jpashopreview.service.MemberService;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -47,6 +45,21 @@ public class MemberApiController {
         return new CreateMemberResponse(member.getId());
     }
 
+    /**
+     * <h3>Update member (version 2)</h3>
+     * <p>Update member by Member DTO.</p>
+     */
+    @PutMapping("/api/v2/members/{memberId}")
+    public UpdateMemberResponse updateMemberV2(
+            @PathVariable Long memberId,
+            @RequestBody @Valid UpdateMemberRequest request
+    ) {
+        memberService.update(memberId, request.getName());
+        Member foundMember = memberService.findById(memberId);
+
+        return new UpdateMemberResponse(memberId, foundMember.getName());
+    }
+
     // note. DTO...
 
     /**
@@ -63,11 +76,28 @@ public class MemberApiController {
      * <p>With Data Transfer Object related to Member.</p>
      */
     @Data
+    @AllArgsConstructor
     static class CreateMemberResponse {
         private Long memberId;
+    }
 
-        public CreateMemberResponse(Long memberId) {
-            this.memberId = memberId;
-        }
+    /**
+     * <h3>Update member request</h3>
+     * <p>With Data Transfer Object related to Member update.</p>
+     */
+    @Data
+    static class UpdateMemberRequest {
+        private String name;
+    }
+
+    /**
+     * <h3>Update member response</h3>
+     * <p>With Data Transfer Object related to Member update.</p>
+     */
+    @Data
+    @AllArgsConstructor
+    static class UpdateMemberResponse {
+        private Long memberId;
+        private String name;
     }
 }
