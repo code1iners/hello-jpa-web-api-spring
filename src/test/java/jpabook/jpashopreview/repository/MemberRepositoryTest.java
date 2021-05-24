@@ -1,6 +1,7 @@
 package jpabook.jpashopreview.repository;
 
 import jpabook.jpashopreview.domain.Member;
+import jpabook.jpashopreview.repository.member.MemberRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,8 @@ import static org.assertj.core.api.Assertions.*;
 @Transactional
 public class MemberRepositoryTest {
 
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     /**
      * <h3>Repository save and find test method.</h3>

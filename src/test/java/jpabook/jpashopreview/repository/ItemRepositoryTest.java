@@ -2,7 +2,7 @@ package jpabook.jpashopreview.repository;
 
 import jpabook.jpashopreview.domain.item.Book;
 import jpabook.jpashopreview.domain.item.Item;
-import org.assertj.core.api.Assertions;
+import jpabook.jpashopreview.repository.item.ItemRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
 public class ItemRepositoryTest {
 
-    @Autowired ItemRepository itemRepository;
+    @Autowired
+    ItemRepository itemRepository;
 
     @Test
     public void save() throws Exception {

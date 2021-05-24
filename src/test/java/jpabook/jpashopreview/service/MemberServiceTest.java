@@ -1,7 +1,7 @@
 package jpabook.jpashopreview.service;
 
 import jpabook.jpashopreview.domain.Member;
-import jpabook.jpashopreview.repository.MemberRepository;
+import jpabook.jpashopreview.repository.member.MemberRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

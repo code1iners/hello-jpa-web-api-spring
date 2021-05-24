@@ -1,7 +1,7 @@
 package jpabook.jpashopreview.service;
 
 import jpabook.jpashopreview.domain.Member;
-import jpabook.jpashopreview.repository.MemberRepository;
+import jpabook.jpashopreview.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

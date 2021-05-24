@@ -1,6 +1,5 @@
-package jpabook.jpashopreview.repository;
+package jpabook.jpashopreview.repository.order;
 
-import jpabook.jpashopreview.api.OrderSimpleApiController;
 import jpabook.jpashopreview.domain.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

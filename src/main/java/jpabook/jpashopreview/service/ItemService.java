@@ -1,9 +1,8 @@
 package jpabook.jpashopreview.service;
 
 import jpabook.jpashopreview.domain.UpdateItemDTO;
-import jpabook.jpashopreview.domain.item.Book;
 import jpabook.jpashopreview.domain.item.Item;
-import jpabook.jpashopreview.repository.ItemRepository;
+import jpabook.jpashopreview.repository.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -7,7 +7,7 @@ import jpabook.jpashopreview.domain.item.Item;
 import jpabook.jpashopreview.domain.status.OrderStatus;
 import jpabook.jpashopreview.domain.value.Address;
 import jpabook.jpashopreview.exception.NotEnoughStockException;
-import jpabook.jpashopreview.repository.OrderRepository;
+import jpabook.jpashopreview.repository.order.OrderRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

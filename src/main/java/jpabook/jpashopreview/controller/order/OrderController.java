@@ -3,7 +3,7 @@ package jpabook.jpashopreview.controller.order;
 import jpabook.jpashopreview.domain.Member;
 import jpabook.jpashopreview.domain.Order;
 import jpabook.jpashopreview.domain.item.Item;
-import jpabook.jpashopreview.repository.OrderSearch;
+import jpabook.jpashopreview.repository.order.OrderSearch;
 import jpabook.jpashopreview.service.ItemService;
 import jpabook.jpashopreview.service.MemberService;
 import jpabook.jpashopreview.service.OrderService;
