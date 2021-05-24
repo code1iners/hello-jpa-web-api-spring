@@ -66,3 +66,4 @@ java -jar *.jar
     * There is item category Album, Book, Movie.
     * Search item by item category.
     * Able to enter delivery information when order item.
+    * Restful API service.
