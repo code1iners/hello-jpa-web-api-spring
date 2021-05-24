@@ -1,7 +1,7 @@
 # JPA Shop
 
 # What is this?
-### This is a simple Spring boot web application with JPA (Review).
+### This is a simple Spring boot web & api application with JPA (Review).
 
 # Libraries
 ## 1. Frontend
