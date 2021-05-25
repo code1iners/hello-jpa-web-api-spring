@@ -5,8 +5,8 @@ import jpabook.jpashopreview.domain.status.OrderStatus;
 import jpabook.jpashopreview.domain.value.Address;
 import jpabook.jpashopreview.repository.order.OrderRepository;
 import jpabook.jpashopreview.repository.order.OrderSearch;
-import jpabook.jpashopreview.repository.order.query.OrderQueryDto;
-import jpabook.jpashopreview.repository.order.query.OrderQueryRepository;
+import jpabook.jpashopreview.repository.order.query.OrderSimpleQueryDto;
+import jpabook.jpashopreview.repository.order.query.OrderSimpleQueryRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class OrderSimpleApiController {
 
     private final OrderRepository orderRepository;
-    private final OrderQueryRepository orderQueryRepository;
+    private final OrderSimpleQueryRepository orderQueryRepository;
 
     /**
      * <h3>Get orders as list (Not recommended).</h3>
@@ -76,7 +76,7 @@ public class OrderSimpleApiController {
      * <p>Could not select column in tables.</p>
      */
     @GetMapping("/api/v4/simple-orders")
-    public List<OrderQueryDto> ordersV4() {
+    public List<OrderSimpleQueryDto> ordersV4() {
         return orderQueryRepository.findOrdersWithDto();
     }
 

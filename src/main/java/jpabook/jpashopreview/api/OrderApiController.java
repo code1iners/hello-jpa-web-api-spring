@@ -87,6 +87,16 @@ public class OrderApiController {
         return new Result(result.size(), result);
     }
 
+    /**
+     * <h>Find orders</h>
+     * <p>Find orders with DTO</p>
+     */
+    @GetMapping("/api/v4/orders")
+    public String ordersV4() {
+
+        return "";
+    }
+
     // note. DTO...
     @Getter
     static class OrderDto {

@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class OrderQueryRepository {
+public class OrderSimpleQueryRepository {
 
     private final EntityManager em;
 
@@ -17,12 +17,12 @@ public class OrderQueryRepository {
      * <p>With DTO</p>
      * <p>Has not reusability</p>
      */
-    public List<OrderQueryDto> findOrdersWithDto() {
+    public List<OrderSimpleQueryDto> findOrdersWithDto() {
         return em.createQuery(
-                "select new jpabook.jpashopreview.repository.order.query.OrderQueryDto(o.id, o.member.name, o.orderDate, o.status, d.address)" +
+                "select new jpabook.jpashopreview.repository.order.query.OrderSimpleQueryDto(o.id, o.member.name, o.orderDate, o.status, d.address)" +
                         " from Order o" +
                         " join o.member m" +
-                        " join o.delivery d", OrderQueryDto.class)
+                        " join o.delivery d", OrderSimpleQueryDto.class)
                 .getResultList();
     }
 }
