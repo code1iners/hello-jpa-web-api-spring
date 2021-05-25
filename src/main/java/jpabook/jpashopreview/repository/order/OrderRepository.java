@@ -144,6 +144,20 @@ public class OrderRepository {
     }
 
     /**
+     * <h3>Find all orders with Member & Delivery by Paging</h3>
+     * <p>Used by offset & limit</p>
+     */
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
+
+    /**
      * <h3>Find all orders with Item</h3>
      * <p>Used by fetch join.</p>
      * <p>So, If you want use paging, do not use this way.</p>

@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -63,6 +64,23 @@ public class OrderApiController {
     @GetMapping("/api/v3/orders")
     public Result ordersV3() {
         List<Order> foundOrders = orderRepository.findAllWithItem();
+        List<OrderDto> result = foundOrders.stream()
+                .map(OrderDto::new)
+                .collect(Collectors.toList());
+        return new Result(result.size(), result);
+    }
+
+    /**
+     * <h3>Find orders</h3>
+     * <p>Find orders improved way over previous version.</p>
+     * <p>Could use paging.</p>
+     */
+    @GetMapping("/api/v3.1/orders")
+    public Result ordersV3_1(
+            @RequestParam(value = "offset", defaultValue = "0") int offset,
+            @RequestParam(value = "limit", defaultValue = "100") int limit
+    ) {
+        List<Order> foundOrders = orderRepository.findAllWithMemberDelivery(offset, limit);
         List<OrderDto> result = foundOrders.stream()
                 .map(OrderDto::new)
                 .collect(Collectors.toList());
