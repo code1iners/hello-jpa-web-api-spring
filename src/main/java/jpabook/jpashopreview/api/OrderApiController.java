@@ -6,6 +6,8 @@ import jpabook.jpashopreview.domain.status.OrderStatus;
 import jpabook.jpashopreview.domain.value.Address;
 import jpabook.jpashopreview.repository.order.OrderRepository;
 import jpabook.jpashopreview.repository.order.OrderSearch;
+import jpabook.jpashopreview.repository.order.query.OrderQueryDto;
+import jpabook.jpashopreview.repository.order.query.OrderQueryRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 public class OrderApiController {
 
     private final OrderRepository orderRepository;
+    private final OrderQueryRepository orderQueryRepository;
 
     /**
      * <h3>Find orders</h3>
@@ -88,13 +91,13 @@ public class OrderApiController {
     }
 
     /**
-     * <h>Find orders</h>
-     * <p>Find orders with DTO</p>
+     * <h3>Find orders</h3>
+     * <p>Find orders with DTO directly in JPA.</p>
      */
     @GetMapping("/api/v4/orders")
-    public String ordersV4() {
-
-        return "";
+    public Result ordersV4() {
+        List<OrderQueryDto> result = orderQueryRepository.findOrderQueryDtos();
+        return new Result(result.size(), result);
     }
 
     // note. DTO...
