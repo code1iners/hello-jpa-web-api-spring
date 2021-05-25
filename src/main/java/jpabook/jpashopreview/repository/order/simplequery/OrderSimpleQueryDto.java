@@ -1,4 +1,4 @@
-package jpabook.jpashopreview.repository.order.query;
+package jpabook.jpashopreview.repository.order.simplequery;
 
 
 import jpabook.jpashopreview.domain.status.OrderStatus;

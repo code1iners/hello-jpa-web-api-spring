@@ -1,4 +1,4 @@
-package jpabook.jpashopreview.repository.order.query;
+package jpabook.jpashopreview.repository.order.simplequery;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +19,7 @@ public class OrderSimpleQueryRepository {
      */
     public List<OrderSimpleQueryDto> findOrdersWithDto() {
         return em.createQuery(
-                "select new jpabook.jpashopreview.repository.order.query.OrderSimpleQueryDto(o.id, o.member.name, o.orderDate, o.status, d.address)" +
+                "select new jpabook.jpashopreview.repository.order.simplequery.OrderSimpleQueryDto(o.id, o.member.name, o.orderDate, o.status, d.address)" +
                         " from Order o" +
                         " join o.member m" +
                         " join o.delivery d", OrderSimpleQueryDto.class)
