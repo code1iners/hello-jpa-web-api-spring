@@ -2,6 +2,8 @@ package jpabook.jpashopreview.api;
 
 import jpabook.jpashopreview.domain.Order;
 import jpabook.jpashopreview.domain.OrderItem;
+import jpabook.jpashopreview.domain.Result;
+import jpabook.jpashopreview.domain.order.OrderDto;
 import jpabook.jpashopreview.domain.status.OrderStatus;
 import jpabook.jpashopreview.domain.value.Address;
 import jpabook.jpashopreview.repository.order.OrderRepository;
@@ -10,7 +12,6 @@ import jpabook.jpashopreview.repository.order.query.OrderFlatDto;
 import jpabook.jpashopreview.repository.order.query.OrderItemQueryDto;
 import jpabook.jpashopreview.repository.order.query.OrderQueryDto;
 import jpabook.jpashopreview.repository.order.query.OrderQueryRepository;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -135,50 +135,48 @@ public class OrderApiController {
     }
 
     // note. DTO...
-    @Getter
-    static class OrderDto {
+//    @Getter
+//    static class OrderDto {
+//
+//        private final Long orderId;
+//        private final String name;
+//        private final LocalDateTime orderDate;
+//        private final OrderStatus orderStatus;
+//        private final Address address;
+//        private final List<OrderItemDto> orderItems;
+//
+//        public OrderDto(Order order) {
+//            orderId = order.getId();
+//            name = order.getMember().getName();
+//            orderDate = order.getOrderDate();
+//            orderStatus = order.getStatus();
+//            address = order.getDelivery().getAddress();
+//            orderItems = order.getOrderItems()
+//                    .stream()
+//                    .map(OrderItemDto::new)
+//                    .collect(toList());
+//        }
+//    }
 
-        private final Long orderId;
-        private final String name;
-        private final LocalDateTime orderDate;
-        private final OrderStatus orderStatus;
-        private final Address address;
-        private final List<OrderItemDto> orderItems;
+//    @Getter
+//    static class OrderItemDto {
+//
+//        private final String itemName;
+//        private final int orderPrice;
+//        private final int count;
+//
+//        public OrderItemDto(OrderItem orderItem) {
+//            itemName = orderItem.getItem().getName();
+//            orderPrice = orderItem.getOrderPrice();
+//            count = orderItem.getCount();
+//        }
+//    }
 
-        public OrderDto(Order order) {
-            orderId = order.getId();
-            name = order.getMember().getName();
-            orderDate = order.getOrderDate();
-            orderStatus = order.getStatus();
-            address = order.getDelivery().getAddress();
-            orderItems = order.getOrderItems()
-                    .stream()
-                    .map(OrderItemDto::new)
-                    .collect(toList());
-        }
-    }
 
-    @Getter
-    static class OrderItemDto {
-
-        private final String itemName;
-        private final int orderPrice;
-        private final int count;
-
-        public OrderItemDto(OrderItem orderItem) {
-            itemName = orderItem.getItem().getName();
-            orderPrice = orderItem.getOrderPrice();
-            count = orderItem.getCount();
-        }
-    }
-
-    /**
-     * <h3>Result wrapper</h3>
-     */
-    @Getter
-    @AllArgsConstructor
-    static class Result<T> {
-        private final int count;
-        private final T data;
-    }
+//    @Getter
+//    @AllArgsConstructor
+//    static class Result<T> {
+//        private final int count;
+//        private final T data;
+//    }
 }

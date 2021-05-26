@@ -13,7 +13,7 @@ spring:
 #        show_sql: true # Duplicate feature with below logging.
         format_sql: true
         default_batch_fetch_size: 100
-    open-in-view: false
+#    open-in-view: false
 
 logging:
   level:
