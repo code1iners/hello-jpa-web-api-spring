@@ -123,6 +123,7 @@ public class OrderApiController {
         // note. Get flated orders by DTO.
         List<OrderFlatDto> flatOrders = orderQueryRepository.findOrderByDtoFlat();
 
+        // note. Remove duplicate order row and merged each order items.
         List<OrderQueryDto> result = flatOrders.stream()
                 .collect(groupingBy(o -> new OrderQueryDto(o.getOrderId(), o.getName(), o.getOrderDate(), o.getOrderStatus(), o.getAddress()),
                         mapping(o -> new OrderItemQueryDto(o.getOrderId(), o.getItemName(), o.getOrderPrice(), o.getCount()), toList())
