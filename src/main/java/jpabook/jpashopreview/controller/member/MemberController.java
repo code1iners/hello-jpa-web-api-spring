@@ -2,7 +2,7 @@ package jpabook.jpashopreview.controller.member;
 
 import jpabook.jpashopreview.domain.Member;
 import jpabook.jpashopreview.domain.value.Address;
-import jpabook.jpashopreview.service.MemberService;
+import jpabook.jpashopreview.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

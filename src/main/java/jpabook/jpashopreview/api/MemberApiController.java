@@ -2,7 +2,7 @@ package jpabook.jpashopreview.api;
 
 import jpabook.jpashopreview.domain.Member;
 import jpabook.jpashopreview.domain.value.Address;
-import jpabook.jpashopreview.service.MemberService;
+import jpabook.jpashopreview.service.member.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

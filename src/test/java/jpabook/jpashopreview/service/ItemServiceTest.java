@@ -3,6 +3,7 @@ package jpabook.jpashopreview.service;
 import jpabook.jpashopreview.domain.item.Album;
 import jpabook.jpashopreview.domain.item.Item;
 import jpabook.jpashopreview.domain.item.Movie;
+import jpabook.jpashopreview.service.item.ItemService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ import static org.assertj.core.api.Assertions.*;
 @Transactional
 public class ItemServiceTest {
 
-    @Autowired ItemService itemService;
+    @Autowired
+    ItemService itemService;
 
     @Test
     public void saveItem() throws Exception {

@@ -1,4 +1,4 @@
-package jpabook.jpashopreview.service;
+package jpabook.jpashopreview.service.order;
 
 import jpabook.jpashopreview.domain.Delivery;
 import jpabook.jpashopreview.domain.Member;

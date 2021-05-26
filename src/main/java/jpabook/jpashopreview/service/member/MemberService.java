@@ -1,4 +1,4 @@
-package jpabook.jpashopreview.service;
+package jpabook.jpashopreview.service.member;
 
 import jpabook.jpashopreview.domain.Member;
 import jpabook.jpashopreview.repository.member.MemberRepository;

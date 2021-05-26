@@ -1,4 +1,4 @@
-package jpabook.jpashopreview.service;
+package jpabook.jpashopreview.service.item;
 
 import jpabook.jpashopreview.domain.UpdateItemDTO;
 import jpabook.jpashopreview.domain.item.Item;

@@ -3,7 +3,7 @@ package jpabook.jpashopreview.controller.item;
 import jpabook.jpashopreview.domain.UpdateItemDTO;
 import jpabook.jpashopreview.domain.item.Book;
 import jpabook.jpashopreview.domain.item.Item;
-import jpabook.jpashopreview.service.ItemService;
+import jpabook.jpashopreview.service.item.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
