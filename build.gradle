@@ -1,8 +1,18 @@
+// note. Query DSL.
+buildscript {
+	dependencies {
+		classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:1.0.10")
+	}
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.5.0'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
+
+// note. Query DSL.
+apply plugin: "com.ewerk.gradle.plugins.querydsl"
 
 group = 'jpabook'
 version = '0.0.1-SNAPSHOT'
@@ -28,9 +38,13 @@ dependencies {
 	// note. SQL logger.
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.7.1'
 
-	// note. Hibernate5Mudule
+	// note. Hibernate5Module
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-hibernate5
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
+
+	// note. Query DSL.
+	implementation 'com.querydsl:querydsl-jpa'
+	implementation 'com.querydsl:querydsl-apt'
 
 	implementation 'junit:junit:4.13.1'
 	compileOnly 'org.projectlombok:lombok'
@@ -41,4 +55,28 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+// note. Query DSL.
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+	library = "com.querydsl:querydsl-apt"
+	jpa = true
+	querydslSourcesDir = querydslDir
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/main/java', querydslDir]
+		}
+	}
+}
+compileQuerydsl {
+	options.annotationProcessorPath = configurations.querydsl
+}
+
+configurations {
+	querydsl.extendsFrom compileClasspath
 }

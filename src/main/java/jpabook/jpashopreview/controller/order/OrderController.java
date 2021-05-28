@@ -47,6 +47,7 @@ public class OrderController {
     public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
         List<Order> orders = orderService.findOrders(orderSearch);
         model.addAttribute("orders", orders);
+        model.addAttribute("orderSearch", orderSearch);
         return "orders/orderList";
     }
 

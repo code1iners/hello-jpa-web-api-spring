@@ -65,6 +65,6 @@ public class OrderService {
      * <h3>Search order</h3>
      */
     public List<Order> findOrders(OrderSearch orderSearch) {
-        return orderRepository.search(orderSearch);
+        return orderRepository.findAll(orderSearch);
     }
 }
