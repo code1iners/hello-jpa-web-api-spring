@@ -30,7 +30,7 @@ public class OrderService {
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
         // note. Get the entities.
-        Member foundMember = memberRepository.findById(memberId);
+        Member foundMember = memberRepository.findById(memberId).get();
         Item foundItem = itemRepository.findById(itemId);
 
         // note. Create delivery status.

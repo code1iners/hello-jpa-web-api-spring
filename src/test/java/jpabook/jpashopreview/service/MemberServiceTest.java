@@ -19,7 +19,8 @@ public class MemberServiceTest {
 
     @Autowired
     MemberService memberService;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     @Test
     public void join() throws Exception {
